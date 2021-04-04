@@ -158,6 +158,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  flutter_gherkin:
+    dependency: "direct dev"
+    description:
+      name: flutter_gherkin
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.9"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -192,8 +199,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  glob:
+  gherkin:
     dependency: transitive
+    description:
+      name: gherkin
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.9"
+  glob:
+    dependency: "direct overridden"
     description:
       name: glob
       url: "https://pub.dartlang.org"
@@ -644,7 +658,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   xdg_directories:
     dependency: transitive
     description:
