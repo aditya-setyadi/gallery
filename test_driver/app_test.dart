@@ -6,9 +6,8 @@ import '../test/apps/shrine/step_definition/cart_step.dart';
 
 Future<void> main() {
   final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test/apps/**/feature/**.feature")]
+    ..features = [Glob(r'test/apps/**/feature/**.feature')]
     ..reporters = [
-      StdoutReporter(),
       ProgressReporter(),
       TestRunSummaryReporter(),
       JsonReporter(path: './report.json')
@@ -23,6 +22,7 @@ Future<void> main() {
       thenUsersCartSuccessFullyEmpty()
     ]
     // ..customStepParameterDefinitions = [ColourParameter()]
+    // ..flutterBuildTimeout = const Duration(minutes: 1, seconds: 30)
     ..restartAppBetweenScenarios = true
     ..targetAppPath = 'test_driver/app.dart'
     ..exitAfterTestRun = true; // set to false if debugging to exit cleanly

@@ -5,19 +5,20 @@ import 'package:flutter_driver/flutter_driver.dart';
 StepDefinitionGeneric givenUserAtShrineHomePage() {
   return given1<String, FlutterWorld>('User at {string} homepage', (galleryName, context) async {
     //declare element to interact
-    final desktopNextButton = find.byValueKey('desktopNextButton');
-    final chosenGallery = find.byValueKey(galleryName.toLowerCase() + '@study');
-    final shrineLoginNextButton = find.byValueKey('shrineLoginNextButton');
+    final chosenGallery = find.text(galleryName);
+    final shrineLoginNextButton = find.text('NEXT');
 
     //check visibilityStatus of the desire gallery
     var visibilityStatus = await FlutterDriverUtils.isPresent(
         context.world.driver, chosenGallery);
 
     //tap next button if the desire gallery not visible
-    while (!visibilityStatus) {
-      await FlutterDriverUtils.tap(context.world.driver, desktopNextButton);
+    var xRetry = 3;
+    while (!visibilityStatus && xRetry < 4) {
+      await context.world.driver.scrollIntoView(chosenGallery);
       visibilityStatus = await FlutterDriverUtils.isPresent(
           context.world.driver, chosenGallery);
+      xRetry += 1;
     }
 
     //navigate to shrine gallery landing page (display page after success login)
