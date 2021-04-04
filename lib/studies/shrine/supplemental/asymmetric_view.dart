@@ -216,6 +216,7 @@ class DesktopAsymmetricView extends StatelessWidget {
               : actualColumnWidth,
         ),
       ),
+      key: const Key('mainItemLstCntr')
     );
   }
 }

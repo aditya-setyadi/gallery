@@ -127,6 +127,7 @@ Widget _buildProductCard({
               ),
             ),
           ],
+          key: Key(product == null ? 'noProduct' : product.name(context).replaceAll(' ', '').toLowerCase())
         ),
         const Padding(
           padding: EdgeInsets.all(16),

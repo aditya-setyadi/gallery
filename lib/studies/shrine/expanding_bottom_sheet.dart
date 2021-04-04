@@ -444,6 +444,7 @@ class _ExpandingBottomSheetState extends State<ExpandingBottomSheet>
         opacity: _thumbnailOpacityAnimation.value,
         child: thumbnails,
       ),
+      key: const Key('addToCartBtn'),
     );
   }
 

@@ -901,6 +901,7 @@ class _DesktopCarouselState extends State<_DesktopCarousel> {
         ),
         if (showPreviousButton)
           _DesktopPageButton(
+            key: const Key('desktopPrevButton'),
             onTap: () {
               _controller.animateTo(
                 _controller.offset - itemWidth,
@@ -911,6 +912,7 @@ class _DesktopCarouselState extends State<_DesktopCarousel> {
           ),
         if (showNextButton)
           _DesktopPageButton(
+            key: const Key('desktopNextButton'),
             isEnd: true,
             onTap: () {
               _controller.animateTo(

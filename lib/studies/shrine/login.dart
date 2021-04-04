@@ -218,6 +218,7 @@ class _CancelAndNextButtons extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).restorablePushNamed(ShrineApp.homeRoute);
               },
+              key: const Key('shrineLoginNextButton'),
             ),
           ],
         ),

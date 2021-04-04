@@ -38,6 +38,7 @@ class CategoryMenuPage extends StatelessWidget {
         style: style,
         textAlign: TextAlign.center,
       ),
+      key: Key(caption.toLowerCase() + 'FltrBtn')
     );
   }
 
