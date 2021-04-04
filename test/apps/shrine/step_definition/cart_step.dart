@@ -5,7 +5,6 @@ import 'package:flutter_driver/flutter_driver.dart';
 StepDefinitionGeneric givenUserAtShrineHomePage() {
   return given1<String, FlutterWorld>('User at {string} homepage', (galleryName, context) async {
     //declare element to interact
-    //TODO: need to add logic based on platform selection when run the test
     final desktopNextButton = find.byValueKey('desktopNextButton');
     final chosenGallery = find.byValueKey(galleryName.toLowerCase() + '@study');
     final shrineLoginNextButton = find.byValueKey('shrineLoginNextButton');

@@ -45,7 +45,7 @@ dev_dependencies:
   flutter_gherkin: ^1.1.9
 
 dependency_overrides:
-  glob: ^2.0.0-nullsafety
+  glob: ^1.1.7
 
 flutter:
   deferred-components:

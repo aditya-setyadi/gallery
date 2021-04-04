@@ -2,7 +2,7 @@ Feature: Clear Cart
   What ever the cart condition when clear cart button tapped the cart must be clear
 
   Scenario: Success clear cart after add multiple item
-    Given User at Shrine homepage
+    Given User at "Shrine" homepage
     When User apply filter "Clothing" category
     And User add "Walter henley (white)" to cart
     When User apply filter "Accessories" category

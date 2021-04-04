@@ -6,7 +6,7 @@ import '../test/apps/shrine/step_definition/cart_step.dart';
 
 Future<void> main() {
   final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test/apps/**/features/**.feature")]
+    ..features = [Glob(r"test/apps/**/feature/**.feature")]
     ..reporters = [
       StdoutReporter(),
       ProgressReporter(),
