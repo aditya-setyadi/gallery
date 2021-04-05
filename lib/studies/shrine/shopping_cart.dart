@@ -78,6 +78,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                   .shrineCartItemCount(
                                 model.totalCartQuantity,
                               ),
+                              key: const Key('cartItemCounter')
                             ),
                           ],
                         ),
@@ -112,6 +113,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                           ),
                           primary: shrinePink100,
                         ),
+                        key: const Key('clrCartBtn'),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           child: Text(

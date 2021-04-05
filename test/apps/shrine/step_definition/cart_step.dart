@@ -3,25 +3,13 @@ import 'package:gherkin/gherkin.dart';
 import 'package:flutter_driver/flutter_driver.dart';
 
 StepDefinitionGeneric givenUserAtShrineHomePage() {
-  return given1<String, FlutterWorld>('User at {string} homepage', (galleryName, context) async {
+  return given<FlutterWorld>('User at Shrine homepage', (context) async {
     //declare element to interact
-    final chosenGallery = find.text(galleryName);
+    final chosenGallery = find.text('Shrine');
     final shrineLoginNextButton = find.text('NEXT');
 
-    //check visibilityStatus of the desire gallery
-    var visibilityStatus = await FlutterDriverUtils.isPresent(
-        context.world.driver, chosenGallery);
-
-    //tap next button if the desire gallery not visible
-    var xRetry = 3;
-    while (!visibilityStatus && xRetry < 4) {
-      await context.world.driver.scrollIntoView(chosenGallery);
-      visibilityStatus = await FlutterDriverUtils.isPresent(
-          context.world.driver, chosenGallery);
-      xRetry += 1;
-    }
-
     //navigate to shrine gallery landing page (display page after success login)
+    await context.world.driver.scrollIntoView(chosenGallery);
     await FlutterDriverUtils.tap(context.world.driver, chosenGallery);
     await FlutterDriverUtils.tap(context.world.driver, shrineLoginNextButton);
   });
@@ -30,25 +18,28 @@ StepDefinitionGeneric givenUserAtShrineHomePage() {
 StepDefinitionGeneric whenUserDoFilteringCategory() {
   return when1<String, FlutterWorld>('User apply filter {string} category',
         (filter, context) async {
-    final selectedFilterButton = find.byValueKey(filter.toLowerCase() + 'FltrBtn');
+    final filterButton = find.byValueKey('filterDrawer');
+    final categorySelected = find.text(filter);
 
-    await FlutterDriverUtils.tap(context.world.driver, selectedFilterButton);
+    await FlutterDriverUtils.tap(context.world.driver, filterButton);
+    await FlutterDriverUtils.tap(context.world.driver, categorySelected);
   });
 }
 
 StepDefinitionGeneric aWhenUserAddItemToCart() {
   return and1<String, FlutterWorld>('User add {string} to cart', (item, context) async {
-    final mainItemListContainer = find.byValueKey('mainItemLstCntr');
-    final itemToCart = find.byValueKey(item.replaceAll(' ', '').toLowerCase());
+    final prodLstPanel = find.byValueKey('prodLstPanel');
+    final itemToCart = find.text(item);
 
     // check item visibility
     var visibilityStatus = await FlutterDriverUtils.isPresent(
         context.world.driver, itemToCart);
 
-    // TODO scrolling until present
-    while (!visibilityStatus) {
+    var xRetry = 3;
+    while (!visibilityStatus && xRetry < 4) {
       await context.world.driver.scrollUntilVisible(
-          mainItemListContainer, itemToCart, dyScroll: -150);
+          prodLstPanel, itemToCart, dxScroll: -150);
+      xRetry += 1;
     }
 
     await FlutterDriverUtils.tap(context.world.driver, itemToCart);
@@ -56,7 +47,7 @@ StepDefinitionGeneric aWhenUserAddItemToCart() {
 }
 
 StepDefinitionGeneric aWhenuserOpenCartDetail() {
-  return and<FlutterWorld>('Add open the cart detail', (context) async {
+  return and<FlutterWorld>('User open the cart detail', (context) async {
     final addToCartButton = find.byValueKey('addToCartBtn');
 
     await FlutterDriverUtils.tap(context.world.driver, addToCartButton);
@@ -66,14 +57,18 @@ StepDefinitionGeneric aWhenuserOpenCartDetail() {
 
 StepDefinitionGeneric whenUserClearTheShoppingCart() {
   return when<FlutterWorld>('User clear the shopping cart', (context) async {
-    // implement your code
-    },
-  );
+    final clearCartButton = find.byValueKey('clrCartBtn');
+
+    await FlutterDriverUtils.tap(context.world.driver, clearCartButton);
+  });
 }
 
 StepDefinitionGeneric thenUsersCartSuccessFullyEmpty() {
   return then<FlutterWorld>('Users cart successfully empty', (context) async {
-    // implement your code
-    },
-  );
+    final addToCartButton = find.byValueKey('addToCartBtn');
+    final cartItemCounterLabel = find.byValueKey('cartItemCounter');
+
+    print(cartItemCounterLabel.serialize());
+    await FlutterDriverUtils.tap(context.world.driver, addToCartButton);
+  });
 }

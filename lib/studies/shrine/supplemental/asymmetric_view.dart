@@ -152,6 +152,7 @@ class MobileAsymmetricView extends StatelessWidget {
                 ),
                 children: _buildColumns(context, constraints),
                 physics: const AlwaysScrollableScrollPhysics(),
+                key: const Key('prodLstPanel')
               );
             },
           ),
